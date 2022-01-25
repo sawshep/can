@@ -66,13 +66,15 @@ ARGV.each do |path|
   end
 
   begin
-    FileUtils.mv(path, File.join(HOME_TRASH_FILES_DIRECTORY, filename))
-
-    trashinfo_filename = filename + '.trashinfo'
-    trashinfo_out_path = File.join(HOME_TRASH_INFO_DIRECTORY, trashinfo_filename)
-    File.new(trashinfo_out_path, 'w').syswrite(trashinfo_string)
-
-    rescue Errno::ENOENT
-      STDERR.puts "can: cannot remove '#{path}': No such file or directory"
+    File.exist?(path) || (raise StandardError.new "can: cannot trash '#{path}': No such file or directory")
+  rescue => e
+    puts e.message
+    next
   end
+
+  FileUtils.mv(path, File.join(HOME_TRASH_FILES_DIRECTORY, filename))
+
+  trashinfo_filename = filename + '.trashinfo'
+  trashinfo_out_path = File.join(HOME_TRASH_INFO_DIRECTORY, trashinfo_filename)
+  File.new(trashinfo_out_path, 'w').syswrite(trashinfo_string)
 end
