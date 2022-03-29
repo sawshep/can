@@ -8,7 +8,9 @@
 
 `can -l`
 
-## View trashinfo of file
+## View trashinfo of files
+
+`can -i foo.txt bar.d`
 
 ## Recover files
 
@@ -17,3 +19,7 @@
 ## Empty files from trashcan
 
 `can -e foo.txt bar.d`
+
+## Empty entire trashcan
+
+`can -e`
