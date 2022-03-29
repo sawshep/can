@@ -5,6 +5,10 @@ require 'date'
 require 'fileutils'
 
 require_relative './argparse.rb'
+require_relative './empty.rb'
+require_relative './info.rb'
+require_relative './list.rb'
+require_relative './recover.rb'
 require_relative './trash.rb'
 
 XDG_DATA_HOME_DEFAULT = File.join(ENV['HOME'], '.local/share')
