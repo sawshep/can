@@ -3,7 +3,6 @@
 require 'cgi'
 require 'date'
 require 'fileutils'
-require 'optparse'
 
 require_relative './argparse.rb'
 require_relative './trash.rb'
