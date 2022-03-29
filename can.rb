@@ -23,6 +23,7 @@ def init_dirs()
   FileUtils.mkpath HOME_TRASH_INFO_DIRECTORY
 end
 
+# Returns filename with all trailing extensions removed
 def strip_extensions(filename)
   ext = File.extname filename
   if ext.empty?
@@ -31,6 +32,7 @@ def strip_extensions(filename)
   strip_extensions(File.basename(filename, ext))
 end
 
+# Returns all extensions of a filename
 def gather_extensions(filename)
   exts = ''
   while not File.extname(filename).empty?

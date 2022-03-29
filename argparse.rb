@@ -10,11 +10,12 @@ module ArgParse
     :trash    => ['', '', 'trash a file']
   }
 
+  # Returns a mode's help string
   def ArgParse.help_string (mode)
     MODES[mode][2]
   end
 
-  # Returns a flag's corresponding mode, if it is valid
+  # Returns an options's corresponding mode, if it is valid
   def ArgParse.valid_opt? (opt)
     result = MODES.find { |k,v|
       v[0..2].include? opt
@@ -24,7 +25,8 @@ module ArgParse
     end
   end
 
-  # Returns the arguments without the mode flag (if any)
+  # Returns the arguments to the program without any mode
+  # flags, if there were any in the first place
   def ArgParse.get_args
     if valid_opt? ARGV[0]
       ARGV[1..]
