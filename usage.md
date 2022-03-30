@@ -8,6 +8,10 @@
 
 `can -l`
 
+## Search files in trashcan that match a regex
+
+`can -l '^foo'`
+
 ## View trashinfo of files
 
 `can -i foo.txt bar.d`
