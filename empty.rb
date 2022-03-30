@@ -1,10 +1,10 @@
 def empty
   # Remove everything in the files and info directory
-  if $args.length == 0
+  if ARGV.length == 0
     FileUtils.rm_r Dir.glob("#{HOME_TRASH_INFO_DIRECTORY}/*"), secure: true
     FileUtils.rm_r Dir.glob("#{HOME_TRASH_FILES_DIRECTORY}/*"), secure: true
   else
-    $args.map { |filename|
+    ARGV.map { |filename|
       trashinfo_filename = filename + '.trashinfo'
 
       file_path = File.join(HOME_TRASH_FILES_DIRECTORY, filename)

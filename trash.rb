@@ -1,5 +1,5 @@
 def trash
-  $args.each do |path|
+  ARGV.each do |path|
     # only ctime should change
     #atime = File.atime path
     #mtime = File.mtime path

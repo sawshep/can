@@ -1,5 +1,9 @@
-module ArgParse
+require 'optparse'
+require 'set'
 
+$options = Set.new
+
+module ArgParse
   USAGE = 'Usage: can [OPTION] [FILE]...'
 
   MODES = {
@@ -7,8 +11,41 @@ module ArgParse
     :info     => ['-i', '--info', 'see information about a trashed file'],
     :recover  => ['-r', '--recover', 'restore a trashed file'],
     :empty    => ['-e', '--empty', 'permanently remove a file from the trash; use with no arguments to empty entire trashcan'],
-    :trash    => ['', '', 'trash a file']
   }
+
+  def ArgParse.init_args
+    OptionParser.new do |opts|
+      opts.banner = USAGE
+
+      MODES.map do |mode,v|
+        opts.on(short_opt(mode), long_opt(mode), help_string(mode)) do |opt|
+          $options << mode
+        end
+      end
+    end.parse!
+
+    if ArgParse.incompatible_opts?
+      raise StandardError.new "can: Too many mode arguments"
+    end
+  end
+
+  # Sees if $options has incompatible items
+  def ArgParse.incompatible_opts?
+    modes = MODES.keys
+    ($options & modes).length > 1
+  end
+
+  def ArgParse.get_mode
+    ($options & MODES.keys).first || :trash
+  end
+
+  def ArgParse.short_opt (mode)
+    MODES[mode][0]
+  end
+
+  def ArgParse.long_opt (mode)
+    MODES[mode][1]
+  end
 
   # Returns a mode's help string
   def ArgParse.help_string (mode)
@@ -23,20 +60,5 @@ module ArgParse
     if result
       result.first
     end
-  end
-
-  # Returns the arguments to the program without any mode
-  # flags, if there were any in the first place
-  def ArgParse.get_args
-    if valid_opt? ARGV[0]
-      ARGV[1..]
-    else
-      ARGV
-    end
-  end
-
-  # Return the mode indicated by the flag
-  def ArgParse.get_mode
-    ArgParse.valid_opt? ARGV[0] or :trash
   end
 end

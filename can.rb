@@ -43,10 +43,11 @@ def gather_extensions(filename)
   exts
 end
 
+ArgParse.init_args
+
 mode = ArgParse.get_mode
-$args = ArgParse.get_args
+$args = ARGV
 
 init_dirs
 
 send mode
-
