@@ -28,10 +28,8 @@ def trash
       filename = basename + ".#{i}" + exts
     end
 
-    begin
-      File.exist?(path) || (raise StandardError.new "can: cannot trash '#{path}': No such file or directory")
-    rescue => e
-      puts e.message
+    if not File.exist?(path)
+      error "cannot trash '#{path}': No such file or directory"
       next
     end
 

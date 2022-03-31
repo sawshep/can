@@ -10,6 +10,7 @@ require_relative './info.rb'
 require_relative './list.rb'
 require_relative './recover.rb'
 require_relative './trash.rb'
+require_relative './error.rb'
 
 XDG_DATA_HOME_DEFAULT = File.join(ENV['HOME'], '.local/share')
 XDG_DATA_HOME = ENV['XDG_DATA_HOME'] || XDG_DATA_HOME_DEFAULT
@@ -43,11 +44,14 @@ def gather_extensions(filename)
   exts
 end
 
+$exit = 0
+
 ArgParse.init_args
 
 mode = ArgParse.get_mode
-$args = ARGV
 
 init_dirs
 
 send mode
+
+exit $exit
