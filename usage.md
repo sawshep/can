@@ -8,17 +8,17 @@
 
 `can -l`
 
-## Search files in trashcan that match a regex
+## List files in trashcan that match a regex
 
 `can -l '^foo'`
 
 ## View trashinfo of files
 
-`can -i foo.txt bar.d`
+`can -n foo.txt bar.d`
 
-## Recover files
+## Untrash files
 
-`can -r foo.txt bar.d`
+`can -u foo.txt bar.d`
 
 ## Empty files from trashcan
 

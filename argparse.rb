@@ -7,10 +7,11 @@ module ArgParse
   USAGE = 'Usage: can [OPTION] [FILE]...'
 
   MODES = {
-    :list     => ['-l', '--list', 'list files in the trash'],
-    :info     => ['-i', '--info', 'see information about a trashed file'],
-    :recover  => ['-r', '--recover', 'restore a trashed file'],
-    :empty    => ['-e', '--empty', 'permanently remove a file from the trash; use with no arguments to empty entire trashcan'],
+    :list     => ['-l', '--list',     'list files in the trash'],
+    :info     => ['-n', '--info',     'see information about a trashed file'],
+    :untrash  => ['-u', '--untrash',  'restore a trashed file'],
+    :empty    => ['-e', '--empty',    'permanently remove a file from the
+                  trash; use with no arguments to empty entire trashcan'],
   }
 
   def ArgParse.init_args

@@ -8,7 +8,7 @@ require_relative './argparse.rb'
 require_relative './empty.rb'
 require_relative './info.rb'
 require_relative './list.rb'
-require_relative './recover.rb'
+require_relative './untrash.rb'
 require_relative './trash.rb'
 require_relative './error.rb'
 
