@@ -1,5 +1,7 @@
 # Usage
 
+**Does not cover all options**
+
 ## Trash files
 
 `can foo.txt bar.d`

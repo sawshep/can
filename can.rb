@@ -44,8 +44,6 @@ def gather_extensions(filename)
   exts
 end
 
-$exit = 0
-
 ArgParse.init_args
 
 mode = ArgParse.get_mode
@@ -54,4 +52,6 @@ init_dirs
 
 send mode
 
-exit $exit
+if $options.include? :force
+  $exit = EXIT_SUCCESS
+end

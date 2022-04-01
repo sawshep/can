@@ -1,6 +1,6 @@
 def info
   if ARGV.length == 0
-    STDERR.puts USAGE
+    Error.fatal USAGE
   else
     ARGV.map { |file|
       trashinfo_filename = file + '.trashinfo'

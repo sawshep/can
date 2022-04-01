@@ -29,7 +29,9 @@ def trash
     end
 
     if not File.exist?(path)
-      error "cannot trash '#{path}': No such file or directory"
+      if not $options.include? :force
+        Error.nonfatal "cannot trash '#{path}': No such file or directory"
+      end
       next
     end
 

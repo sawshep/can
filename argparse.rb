@@ -3,22 +3,36 @@ require 'set'
 
 $options = Set.new
 
+USAGE = 'Usage: can [OPTION] [FILE]...'
+
 module ArgParse
-  USAGE = 'Usage: can [OPTION] [FILE]...'
 
   MODES = {
-    :list     => ['-l', '--list',     'list files in the trash'],
-    :info     => ['-n', '--info',     'see information about a trashed file'],
-    :untrash  => ['-u', '--untrash',  'restore a trashed file'],
-    :empty    => ['-e', '--empty',    'permanently remove a file from the
-                  trash; use with no arguments to empty entire trashcan'],
+    :list     => ['-l', '--list',
+                  'list files in the trash'],
+    :info     => ['-n', '--info',
+                  'see information about a trashed file'],
+    :untrash  => ['-u', '--untrash',
+                  'restore a trashed file'],
+    :empty    => ['-e', '--empty',
+                  'permanently remove a file from the trash;
+                  use with no arguments to empty entire
+                  trashcan'],
   }
+
+  OPTIONS = {
+    :force  => ['-f', '--force',
+                'ignore nonexistent files and arguments,
+                never prompt']
+  }
+
+  ALL_FLAGS = MODES.merge(OPTIONS)
 
   def ArgParse.init_args
     OptionParser.new do |opts|
       opts.banner = USAGE
 
-      MODES.map do |mode,v|
+      ALL_FLAGS.each do |mode,v|
         opts.on(short_opt(mode), long_opt(mode), help_string(mode)) do |opt|
           $options << mode
         end
@@ -26,7 +40,7 @@ module ArgParse
     end.parse!
 
     if ArgParse.incompatible_opts?
-      raise StandardError.new "can: Too many mode arguments"
+      Error.fatal "Too many mode arguments"
     end
   end
 
@@ -41,16 +55,16 @@ module ArgParse
   end
 
   def ArgParse.short_opt (mode)
-    MODES[mode][0]
+    ALL_FLAGS[mode][0]
   end
 
   def ArgParse.long_opt (mode)
-    MODES[mode][1]
+    ALL_FLAGS[mode][1]
   end
 
   # Returns a mode's help string
   def ArgParse.help_string (mode)
-    MODES[mode][2]
+    ALL_FLAGS[mode][2]
   end
 
   # Returns an options's corresponding mode, if it is valid
