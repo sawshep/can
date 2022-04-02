@@ -1,3 +1,5 @@
+require 'highline'
+
 def trash
   if ARGV.length == 0 and not $options.include? :force
       Error.fatal 'missing operand'
