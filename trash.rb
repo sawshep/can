@@ -1,4 +1,8 @@
 def trash
+  if ARGV.length == 0 and not $options.include? :force
+      Error.fatal 'missing operand'
+  end
+
   ARGV.each do |path|
     # only ctime should change
     #atime = File.atime path

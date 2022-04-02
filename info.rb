@@ -1,6 +1,8 @@
 def info
+  # Fails with a fatal error even with --force, intended
+  # behavior.
   if ARGV.length == 0
-    Error.fatal USAGE
+    Error.fatal 'missing operand'
   else
     ARGV.map { |file|
       trashinfo_filename = file + '.trashinfo'
