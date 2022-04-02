@@ -23,7 +23,8 @@ module ArgParse
   OPTIONS = {
     :force  => ['-f', '--force',
                 'ignore nonexistent files and arguments,
-                never prompt']
+                never prompt'],
+    :prompt => ['-i', nil, 'prompt before every trashing']
   }
 
   ALL_FLAGS = MODES.merge(OPTIONS)

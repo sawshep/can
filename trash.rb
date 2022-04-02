@@ -4,10 +4,23 @@ def trash
   end
 
   ARGV.each do |path|
-    # only ctime should change
-    #atime = File.atime path
-    #mtime = File.mtime path
-    #ctime = File.ctime path
+
+    if not File.exist?(path)
+      if not $options.include? :force
+        Error.nonfatal "cannot trash '#{path}': No such file or directory"
+      end
+      next
+    end
+
+    # TODO: Highline.agree prints to stdout, when it should
+    # print to stderr. It also uses `puts`, while this use
+    # case should use `print`.
+    if $options.include? :prompt
+      unless HighLine.agree "can: remove file '#{path}'?"
+        next
+      end
+    end
+
     filename = File.basename path
 
     trashinfo_string = <<~DESKTOP
@@ -30,13 +43,6 @@ def trash
     while existing_trash_files.include?(filename)
       i += 1
       filename = basename + ".#{i}" + exts
-    end
-
-    if not File.exist?(path)
-      if not $options.include? :force
-        Error.nonfatal "cannot trash '#{path}': No such file or directory"
-      end
-      next
     end
 
     FileUtils.mv(path, File.join(HOME_TRASH_FILES_DIRECTORY, filename))
