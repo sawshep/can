@@ -1,3 +1,6 @@
+# TODO: Parse the .trashinfo files to make them more human
+# readable. Also, display the filename above the information
+# with empty lines between consecutive info blocks.
 def info
   # Fails with a fatal error even with --force, intended
   # behavior.
