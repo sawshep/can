@@ -16,7 +16,11 @@ move each to the trash directory.
 
 ## Trash files
 
-`can foo.txt bar.d`
+`can foo.txt bar.txt`
+
+## Trash directories and files
+
+`can -r foo.txt bar.d`
 
 ## List files in trashcan
 
