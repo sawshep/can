@@ -1,7 +1,6 @@
 #!/usr/bin/env ruby
 
 require 'cgi'
-require 'date'
 require 'fileutils'
 
 require_relative './argparse.rb'

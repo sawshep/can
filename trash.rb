@@ -38,7 +38,7 @@ def trash
     trashinfo_string = <<~DESKTOP
       [Trash Info]
       Path=#{CGI.escape(File.expand_path path)}
-      DeletionDate=#{Date.new.strftime('%Y-%m-%dT%H:%M:%S')}
+      DeletionDate=#{Time.now.strftime('%Y-%m-%dT%H:%M:%S')}
     DESKTOP
 
     existing_trash_files = Dir.children HOME_TRASH_FILES_DIRECTORY
