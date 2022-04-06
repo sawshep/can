@@ -11,12 +11,9 @@ def untrash
 
     trashinfo_filename = filename + '.trashinfo'
     trashinfo_path = File.join(HOME_TRASH_INFO_DIRECTORY, trashinfo_filename)
-    trashinfo = File.read trashinfo_path
+    trashinfo = Trashinfo.parse(File.read trashinfo_path)
 
-    regex = /\A\[Trash Info\]\nPath=(?<path>\S+)\nDeletionDate=(?<deletion_date>\S+)/m
-
-    parts = regex.match trashinfo
-    original_path = CGI.unescape parts[:path]
+    original_path = trashinfo[:path]
 
     # TODO: Implement more thorough error handling
     if File.exist? original_path

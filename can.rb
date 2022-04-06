@@ -1,6 +1,5 @@
 #!/usr/bin/env ruby
 
-require 'cgi'
 require 'fileutils'
 
 require_relative './argparse.rb'
@@ -10,6 +9,7 @@ require_relative './list.rb'
 require_relative './untrash.rb'
 require_relative './trash.rb'
 require_relative './error.rb'
+require_relative './trashinfo.rb'
 
 XDG_DATA_HOME_DEFAULT = File.join(ENV['HOME'], '.local/share')
 XDG_DATA_HOME = ENV['XDG_DATA_HOME'] || XDG_DATA_HOME_DEFAULT
