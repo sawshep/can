@@ -7,10 +7,26 @@ def info
   if ARGV.length == 0
     Error.fatal 'missing operand'
   else
-    ARGV.map { |file|
+    ARGV.each_with_index { |file, i|
       trashinfo_filename = file + '.trashinfo'
       trashinfo_path = File.join(HOME_TRASH_INFO_DIRECTORY, trashinfo_filename)
-      puts File.read(trashinfo_path)
+
+      if not File.exist? trashinfo_path
+        Error.nonfatal "no such file in trashcan: '#{file}'"
+        next
+      end
+
+      trashinfo = Trashinfo.parse(File.read trashinfo_path)
+
+      # TODO: Checking if i is not zero every single
+      # iteration is a little inefficient. Maybe there is a
+      # better way to do this?
+      puts if i != 0
+      puts <<~INFO
+        #{file}:
+        Path: #{trashinfo[:path]}
+        Deletion Date: #{trashinfo[:deletion_date]}
+      INFO
     }
   end
 end
