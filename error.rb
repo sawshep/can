@@ -8,13 +8,13 @@ at_exit do
 end
 
 module Error
-  def Error.nonfatal (message)
+  def self.nonfatal (message)
     STDERR.puts('can: ' + message)
     $exit = EXIT_FAILURE
   end
 
   # Exits without callbacks to at_exit
-  def Error.fatal (message)
+  def self.fatal (message)
     STDERR.puts('can: ' + message)
     exit!(EXIT_FAILURE)
   end

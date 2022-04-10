@@ -32,7 +32,7 @@ module ArgParse
 
   ALL_FLAGS = MODES.merge(OPTIONS)
 
-  def ArgParse.init_args
+  def self.init_args
     OptionParser.new do |opts|
       opts.banner = USAGE
 
@@ -49,30 +49,30 @@ module ArgParse
   end
 
   # Sees if $options has incompatible items
-  def ArgParse.incompatible_opts?
+  def self.incompatible_opts?
     modes = MODES.keys
     ($options & modes).length > 1
   end
 
-  def ArgParse.get_mode
+  def self.get_mode
     ($options & MODES.keys).first || :trash
   end
 
-  def ArgParse.short_opt (mode)
+  def self.short_opt (mode)
     ALL_FLAGS[mode][0]
   end
 
-  def ArgParse.long_opt (mode)
+  def self.long_opt (mode)
     ALL_FLAGS[mode][1]
   end
 
   # Returns a mode's help string
-  def ArgParse.help_string (mode)
+  def self.help_string (mode)
     ALL_FLAGS[mode][2]
   end
 
   # Returns an options's corresponding mode, if it is valid
-  def ArgParse.valid_opt? (opt)
+  def self.valid_opt? (opt)
     result = MODES.find { |k,v|
       v[0..2].include? opt
     }

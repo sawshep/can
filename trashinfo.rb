@@ -1,7 +1,7 @@
 require 'cgi'
 
 module Trashinfo
-  def Trashinfo.new (path)
+  def self.new (path)
     trashinfo_string = <<~DESKTOP
       [Trash Info]
       Path=#{CGI.escape(File.expand_path path)}
@@ -9,7 +9,7 @@ module Trashinfo
     DESKTOP
   end
 
-  def Trashinfo.parse (trashinfo)
+  def self.parse (trashinfo)
     regex = /\A\[Trash Info\]\nPath=(?<path>\S+)\nDeletionDate=(?<deletion_date>\S+)/m
 
     matches = regex.match trashinfo
