@@ -11,4 +11,5 @@ Gem::Specification.new do |s|
   s.files       = `git ls-files -z`.split "\x0"
   s.homepage    = 'https://github.com/sawshep/can'
   s.license     = 'GPL-3.0'
+  s.add_runtime_dependency 'highline', '~> 2.0'
 end
