@@ -4,8 +4,11 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - name: Publish gem
-      uses: dawidd6/action-publish-gem@v1
+    - uses: actions/checkout@v1
+    
+    - name: Publish to Rubygems
+      uses: cadwallion/publish-rubygems-action@v1.0.0
       with:
-        #api_key: ${{secrets.RUBYGEMS_API_KEY}}
-        github_token: ${{secrets.GITHUB_TOKEN}}
+        RUBYGEMS_API_KEY: ${{secrets.RUBYGEMS_API_KEY}}
+        GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+        RELEASE_COMMAND: rake release
