@@ -4,11 +4,28 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
-    
     - name: Publish to Rubygems
-      uses: cadwallion/publish-rubygems-action@v1.0.0
+      uses: actions/checkout@v1
+      run: |
+        echo "Setting up gem credentials..."
+        set +x
+        mkdir -p ~/.gem
+        cat << EOF > ~/.gem/credentials
+        ---
+        :github: Bearer ${GITHUB_TOKEN}
+        :rubygems_api_key: ${RUBYGEMS_API_KEY}
+        EOF
+
+        chmod 0600 ~/.gem/credentials
+        set -x
+
+        echo "Installing dependencies..."
+        bundle install > /dev/null
+
+        echo "Building Gem..."
+        gem build *.gemspec
+        echo "Pushing Gem..."
+        exec gem push *.gemspec
       env:
         RUBYGEMS_API_KEY: ${{secrets.RUBYGEMS_API_KEY}}
         GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
-        RELEASE_COMMAND: "gem build *.gemspec;gem push *.gemspec"
