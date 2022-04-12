@@ -1,18 +1,20 @@
+# frozen_string_literal: true
+
 module Can
   def self.untrash
     ARGV.each do |filename|
       file_path = File.join(HOME_TRASH_FILES_DIRECTORY, filename)
 
-      if not File.exist? file_path
-          if not $options.include? :force
-            Error.nonfatal "cannot untrash '#{filename}': No such file or directory in trash"
-          end
+      unless File.exist? file_path
+        unless $options.include? :force
+          Error.nonfatal "cannot untrash '#{filename}': No such file or directory in trash"
+        end
         next
       end
 
-      trashinfo_filename = filename + '.trashinfo'
+      trashinfo_filename = "#{filename}.trashinfo"
       trashinfo_path = File.join(HOME_TRASH_INFO_DIRECTORY, trashinfo_filename)
-      trashinfo = Trashinfo.parse(File.read trashinfo_path)
+      trashinfo = Trashinfo.parse(File.read(trashinfo_path))
 
       original_path = trashinfo[:path]
 

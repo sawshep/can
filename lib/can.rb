@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'fileutils'
 
 require 'can/argparse'
@@ -18,7 +20,7 @@ module Can
   HOME_TRASH_INFO_DIRECTORY = File.join(HOME_TRASH_DIRECTORY, 'info')
   HOME_TRASH_FILES_DIRECTORY = File.join(HOME_TRASH_DIRECTORY, 'files')
 
-  def self.init_dirs()
+  def self.init_dirs
     FileUtils.mkpath HOME_TRASH_FILES_DIRECTORY
     FileUtils.mkpath HOME_TRASH_INFO_DIRECTORY
   end
@@ -26,14 +28,12 @@ module Can
   def self.can
     ArgParse.init_args
 
-    mode = ArgParse.get_mode
+    mode = ArgParse.mode
 
-    self.init_dirs
+    init_dirs
 
-    self.send mode
+    send mode
 
-    if $options.include? :force
-      $exit = EXIT_SUCCESS
-    end
+    $exit = EXIT_SUCCESS if $options.include? :force
   end
 end

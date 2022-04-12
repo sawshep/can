@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Can
   # TODO: Parse the .trashinfo files to make them more human
   # readable. Also, display the filename above the information
@@ -5,19 +7,19 @@ module Can
   def self.info
     # Fails with a fatal error even with --force, intended
     # behavior.
-    if ARGV.length == 0
+    if ARGV.empty?
       Error.fatal 'missing operand'
     else
-      ARGV.each_with_index { |file, i|
-        trashinfo_filename = file + '.trashinfo'
+      ARGV.each_with_index do |file, i|
+        trashinfo_filename = "#{file}.trashinfo"
         trashinfo_path = File.join(HOME_TRASH_INFO_DIRECTORY, trashinfo_filename)
 
-        if not File.exist? trashinfo_path
+        unless File.exist? trashinfo_path
           Error.nonfatal "no such file in trashcan: '#{file}'"
           next
         end
 
-        trashinfo = Trashinfo.parse(File.read trashinfo_path)
+        trashinfo = Trashinfo.parse(File.read(trashinfo_path))
 
         # TODO: Checking if i is not zero every single
         # iteration is a little inefficient. Maybe there is a
@@ -28,7 +30,7 @@ module Can
           Path: #{trashinfo[:path]}
           Deletion Date: #{trashinfo[:deletion_date]}
         INFO
-      }
+      end
     end
   end
 end
