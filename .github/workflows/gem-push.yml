@@ -8,7 +8,7 @@ jobs:
     
     - name: Publish to Rubygems
       uses: cadwallion/publish-rubygems-action@v1.0.0
-      with:
+      env:
         RUBYGEMS_API_KEY: ${{secrets.RUBYGEMS_API_KEY}}
         GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
         RELEASE_COMMAND: rake release
