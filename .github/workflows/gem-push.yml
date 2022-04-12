@@ -11,4 +11,4 @@ jobs:
       env:
         RUBYGEMS_API_KEY: ${{secrets.RUBYGEMS_API_KEY}}
         GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
-        RELEASE_COMMAND: rake release
+        RELEASE_COMMAND: "gem build *.gemspec"
