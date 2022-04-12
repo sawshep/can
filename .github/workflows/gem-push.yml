@@ -4,8 +4,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+    - uses: actions/checkout@v1
     - name: Publish to Rubygems
-      uses: actions/checkout@v1
       run: |
         echo "Setting up gem credentials..."
         set +x
