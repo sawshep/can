@@ -26,14 +26,14 @@ module Can
   end
 
   def self.can
-    ArgParse.init_args
+    @options = ArgParse.init_args
 
-    mode = ArgParse.mode
+    mode = ArgParse.mode @options
 
     init_dirs
 
     send mode
 
-    $exit = EXIT_SUCCESS if $options.include? :force
+    $exit = EXIT_SUCCESS if @options.include?(:force)
   end
 end

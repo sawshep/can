@@ -6,7 +6,7 @@ module Can
       file_path = File.join(HOME_TRASH_FILES_DIRECTORY, filename)
 
       unless File.exist? file_path
-        unless $options.include? :force
+        unless @options.include? :force
           Error.nonfatal "cannot untrash '#{filename}': No such file or directory in trash"
         end
         next

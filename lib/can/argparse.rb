@@ -4,7 +4,6 @@ require 'optparse'
 require 'set'
 require 'can/version'
 
-$options = Set.new
 
 # This needs to be here because OptParse only looks
 # at `Version` and @version for the version number,
@@ -43,27 +42,31 @@ module Can
   module ArgParse
     Version = VERSION
     def self.init_args
+      options = Set.new
+
       OptionParser.new do |opts|
         opts.banner = USAGE
 
         ALL_FLAGS.each do |mode, _v|
           opts.on(short_opt(mode), long_opt(mode), help_string(mode)) do |_opt|
-            $options << mode
+            options << mode
           end
         end
       end.parse!
 
-      Error.fatal 'Too many mode arguments' if ArgParse.incompatible_opts?
+      Error.fatal 'Too many mode arguments' if ArgParse.incompatible_opts?(options)
+
+      options
     end
 
-    # Sees if $options has incompatible items
-    def self.incompatible_opts?
+    # Sees if options has incompatible items
+    def self.incompatible_opts?(options)
       modes = MODES.keys
-      ($options & modes).length > 1
+      (options & modes).length > 1
     end
 
-    def self.mode
-      ($options & MODES.keys).first || :trash
+    def self.mode(options)
+      (options & MODES.keys).first || :trash
     end
 
     def self.short_opt(mode)
