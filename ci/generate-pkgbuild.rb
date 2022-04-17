@@ -37,7 +37,7 @@ pkgbuild = <<~PKGBUILD
   options=(!emptydirs)
   source=(https://rubygems.org/downloads/$_gemname-$pkgver.gem)
   noextract=($_gemname-$pkgver.gem)
-  sha256sum=('#{sha256sum}')
+  sha256sums=('#{sha256sum}')
 
   package() {
     local _gemdir="$(ruby -e'puts Gem.default_dir')"
