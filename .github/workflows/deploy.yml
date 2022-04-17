@@ -40,4 +40,4 @@ jobs:
           commit_email: ${{ secrets.COMMIT_EMAIL }}
           ssh_private_key: ${{ secrets.AUR_SSH_PRIVATE_KEY }}
           commit_message: Update AUR package
-          ssh_keyscan_types: rsa,dsa,ecdsa,ed22519
+          ssh_keyscan_types: rsa,dsa,ecdsa,ed25519
