@@ -1,4 +1,5 @@
-# can
+<h1 style="text-align: center;">can</h1>
+-----------------------------
 
 A command line implementation of the [Freedesktop XDG trash
 specification](https://specifications.freedesktop.org/trash-spec/trashspec-latest.html).
@@ -6,42 +7,42 @@ specification](https://specifications.freedesktop.org/trash-spec/trashspec-lates
 Can seeks to follow the behavior of the GNOME Files
 (Nautilus) trash implementation.
 
-As of now, it is partially implemented. You can use Can on
-multiple files---it will create an info file for each and
-move each to the trash directory.
+## Installation
 
-# Usage
+Can is available as a
+[Gem](https://rubygems.org/gems/can_cli) and as an [AUR
+package](https://aur.archlinux.org/packages/can).
+
+Install Gem:
+`gem install can`
+
+Install on AUR:
+`paru -S can`
+
+## Usage
 
 **Does not cover all options**
 
-## Trash files
-
+**Trash files**
 `can foo.txt bar.txt`
 
-## Trash directories and files
-
+**Trash directories and files**
 `can -r foo.txt bar.d`
 
-## List files in trashcan
-
+**List files in trashcan**
 `can -l`
 
-## List files in trashcan that match a regex
-
+**List files in trashcan that match a regex**
 `can -l '^foo'`
 
-## View trashinfo of files
-
+**View trashinfo of files**
 `can -n foo.txt bar.d`
 
-## Untrash files
-
+**Untrash files**
 `can -u foo.txt bar.d`
 
-## Empty files from trashcan
-
+**Empty files from trashcan**
 `can -e foo.txt bar.d`
 
-## Empty entire trashcan
-
+**Empty entire trashcan**
 `can -e`
