@@ -8,6 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
+
     - name: Publish to Rubygems
       uses: sawshep/publish-rubygems-action@v1.1.0
       env:
@@ -22,9 +23,8 @@ jobs:
 
     runs-on: ubuntu-latest
     steps:
-      - name: Set up environment
-        uses: actions/checkout@v3
-        uses: ruby/setup-ruby@v1.101.0
+      - uses: actions/checkout@v3
+      - uses: ruby/setup-ruby@v1.101.0
 
       - name: Generate PKGBUILD
         run: ./ci/generate-pkgbuild.rb
