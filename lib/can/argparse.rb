@@ -4,7 +4,6 @@ require 'optparse'
 require 'set'
 require 'can/version'
 
-
 # This needs to be here because OptParse only looks
 # at `Version` and @version for the version number,
 # not VERSION. Putting it in the namespace of `Can` or
