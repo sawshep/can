@@ -10,21 +10,21 @@ Gem::Specification.new do |s|
   s.description = 'A command-line trashcan interface implementing the FreeDesktop trash specification as a drop-in replacement for rm.'
   s.authors     = ['Sawyer Shepherd']
   s.email       = 'contact@sawyershepherd.org'
-  s.files       = [
-    'LICENSE',
-    'README.md',
-    'bin/can',
-    'can.gemspec',
-    'lib/can/argparse.rb',
-    'lib/can/version.rb',
-    'lib/can.rb',
-    'lib/empty.rb',
-    'lib/error.rb',
-    'lib/info.rb',
-    'lib/list.rb',
-    'lib/trash.rb',
-    'lib/trashinfo.rb',
-    'lib/untrash.rb'
+  s.files       = %w[
+    LICENSE
+    README.md
+    bin/can
+    can.gemspec
+    lib/can.rb
+    lib/can/argparse.rb
+    lib/can/empty.rb
+    lib/can/info.rb
+    lib/can/list.rb
+    lib/can/trash.rb
+    lib/can/untrash.rb
+    lib/can/version.rb
+    lib/error.rb
+    lib/trashinfo.rb
   ]
   s.homepage    = 'https://github.com/sawshep/can'
   s.license     = 'GPL-3.0'

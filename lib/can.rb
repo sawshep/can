@@ -2,15 +2,15 @@
 
 require 'fileutils'
 
-require 'can/argparse'
 require 'trashinfo'
 require 'error'
 
-require_relative 'empty'
-require_relative 'info'
-require_relative 'list'
-require_relative 'untrash'
-require_relative 'trash'
+require 'can/argparse'
+require 'can/empty'
+require 'can/info'
+require 'can/list'
+require 'can/untrash'
+require 'can/trash'
 
 module Can
   XDG_DATA_HOME_DEFAULT = File.join(ENV['HOME'], '.local/share')

@@ -18,7 +18,6 @@ module Can
 
       original_path = trashinfo[:path]
 
-      # TODO: Implement more thorough error handling
       if File.exist? original_path
         Error.nonfatal "cannot untrash '#{filename}' to '#{original_path}': File exists"
         next
