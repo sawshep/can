@@ -2,7 +2,7 @@
 
 module Can
   def self.untrash
-    ARGV.each do |filename|
+    @argv.each do |filename|
       file_path = File.join(HOME_TRASH_FILES_DIRECTORY, filename)
 
       unless File.exist? file_path

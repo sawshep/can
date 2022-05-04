@@ -23,9 +23,9 @@ end
 
 module Can
   def self.trash
-    Error.fatal 'missing operand' if ARGV.empty? && !@options.include?(:force)
+    Error.fatal 'missing operand' if @argv.empty? && !@options.include?(:force)
 
-    ARGV.each do |path|
+    @argv.each do |path|
       # TODO: If both `-f` and `-i` are used, can should
       # prompt if `-i` is used last. If `-f` is used last,
       # can should not prompt trashings. This follows the

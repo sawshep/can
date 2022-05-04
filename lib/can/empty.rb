@@ -7,7 +7,7 @@ module Can
       FileUtils.rm_r Dir.glob("#{HOME_TRASH_INFO_DIRECTORY}/*"), secure: true
       FileUtils.rm_r Dir.glob("#{HOME_TRASH_FILES_DIRECTORY}/*"), secure: true
     else
-      ARGV.each do |filename|
+      @argv.each do |filename|
         trashinfo_filename = "#{filename}.trashinfo"
 
         file_path = File.join(HOME_TRASH_FILES_DIRECTORY, filename)

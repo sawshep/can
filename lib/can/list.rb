@@ -3,13 +3,13 @@
 module Can
   def self.list
     # Given no args, show every trashed file
-    if ARGV.empty?
+    if @argv.empty?
       puts Dir.children(HOME_TRASH_FILES_DIRECTORY)
 
     # Given a regex pattern as an arg, print trashed files
     # that fit
-    elsif ARGV.length == 1
-      regex = Regexp.new(ARGV[0])
+    elsif @argv.length == 1
+      regex = Regexp.new(@argv[0])
       puts(
         Dir.children(HOME_TRASH_FILES_DIRECTORY).select do |file|
           regex =~ file
@@ -17,7 +17,7 @@ module Can
       )
 
     else
-      raise StandardError, "can: mode --list expects 0 to 1 arguments, given #{ARGV.length}"
+      raise StandardError, "can: mode --list expects 0 to 1 arguments, given #{@argv.length}"
     end
   end
 end

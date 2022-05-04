@@ -25,8 +25,13 @@ module Can
     FileUtils.mkpath HOME_TRASH_INFO_DIRECTORY
   end
 
-  def self.can
-    @options = ArgParse.init_args
+  def self.cli
+    can ARGV
+  end
+
+
+  def self.can(argv)
+    @options, @argv = ArgParse.init_args(argv)
 
     mode = ArgParse.mode @options
 

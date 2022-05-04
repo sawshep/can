@@ -40,7 +40,7 @@ module Can
 
   module ArgParse
     Version = VERSION
-    def self.init_args
+    def self.init_args(argv)
       options = Set.new
 
       OptionParser.new do |opts|
@@ -51,11 +51,11 @@ module Can
             options << mode
           end
         end
-      end.parse!
+      end.parse!(argv)
 
       Error.fatal 'Too many mode arguments' if ArgParse.incompatible_opts?(options)
 
-      options
+      return options, argv
     end
 
     # Sees if options has incompatible items

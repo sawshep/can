@@ -4,10 +4,10 @@ module Can
   def self.info
     # Fails with a fatal error even with --force, intended
     # behavior.
-    if ARGV.empty?
+    if @argv.empty?
       Error.fatal 'missing operand'
     else
-      ARGV.each_with_index do |file, i|
+      @argv.each_with_index do |file, i|
         trashinfo_filename = "#{file}.trashinfo"
         trashinfo_path = File.join(HOME_TRASH_INFO_DIRECTORY, trashinfo_filename)
 

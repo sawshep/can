@@ -3,4 +3,4 @@
 
 require 'can'
 
-Can.can
+Can.cli
