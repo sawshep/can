@@ -14,7 +14,7 @@ jobs:
       env:
         RUBYGEMS_API_KEY: ${{ secrets.RUBYGEMS_API_KEY }}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        RELEASE_COMMAND: "gem build *.gemspec && gem push *.gem"
+        RELEASE_COMMAND: "rake test && gem build *.gemspec && gem push *.gem"
 
   aur:
     name: Publish AUR package
